@@ -4,7 +4,9 @@ const generateHTML = require('./generatehtml');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const employees = [];
+let manager;
+const engineers = [];
+const interns = [];
 
 const managerInput = [
   {
@@ -85,9 +87,7 @@ function writeToFile(fileName, data) {
 
 function init() {
   inquirer.prompt(managerInput).then((answers) => {
-    console.log(answers);
-    const newManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-    employees.push(newManager);
+    manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
     addEmployee();
   });
 }
@@ -101,9 +101,10 @@ function addEmployee() {
     })
     .then((answer) => {
       console.log(answer);
-      // ???
       if (answer.anotherEmployee === true) {
         addEorI();
+      } else {
+        writeToFile('index.html', generateHTML(manager, engineers, interns));
       }
     });
 }
@@ -122,13 +123,15 @@ function addEorI() {
         inquirer.prompt(engineerInput).then((answers) => {
           console.log(answers);
           const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-          employees.push(newEngineer);
+          engineers.push(newEngineer);
+          addEmployee();
         });
       } else if (answer.EorI === 'Intern') {
         inquirer.prompt(internInput).then((answers) => {
           console.log(answers);
           const newIntern = new Intern(answers.name, answers.id, answers.email, answers.school);
-          employees.push(newIntern);
+          interns.push(newIntern);
+          addEmployee();
         });
       }
     });
