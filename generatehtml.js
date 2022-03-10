@@ -14,6 +14,7 @@ function generateHTML(manager, engineers, interns) {
 <body>
     ${managerCard(manager)}
     ${engineerCard(engineers)}
+    ${internCard(interns)}
 </body>
 </html>`;
   return html;
@@ -40,6 +41,20 @@ function engineerCard(engineers) {
     <p class="card-text">${engineers[i].id}</p>
     <p class="card-text">${engineers[i].email}</p>
     <p class="card-text">${engineers[i].github}</p>
+  </div>
+</div>`;
+  }
+}
+
+function internCard(interns) {
+  for (let i = 0; i < interns.length; i++) {
+    return `
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${interns[i].name}</h5>
+    <p class="card-text">${interns[i].id}</p>
+    <p class="card-text">${interns[i].email}</p>
+    <p class="card-text">${interns[i].school}</p>
   </div>
 </div>`;
   }
