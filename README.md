@@ -19,7 +19,8 @@ Clone the repository for the app from my repository.
 
 ## Usage:
 
-Run in integrated terminal.
+Run in integrated terminal. Below is a tutorial video.
+https://drive.google.com/file/d/1GqYMoyBQSGCuYwCm-iWHSd5oJZENuA56/view
 
 ## License:
 
